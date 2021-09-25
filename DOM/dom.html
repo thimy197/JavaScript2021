@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML DOM</title>
+</head>
+<body>
+    <!-- 
+        DOM - Document Object Model - Mô hình document, tuân theo tiêu chuẩn của W3C
+            Khi thực hiện load page trên browser thì DOM được tạo ra, dựa vào file .html sinh ra DOM
+        Gồm 3 thành phần:
+            - Element
+            - Attribute
+            - Text
+        Tính chất: Có thể get/change/add/delete các thành phần(Element, Attr, Text) của nó
+
+        Javascript không có liên quan đến DOM:
+            DOM chỉ là mô hình
+            Javascript thì đưa ra các phương thức để truy cập vào từng thành phần của DOM
+     -->
+
+     <!-- 1. Element: -->
+     <h1 id="heading">Javascript...</h1>
+     <div class="box">
+         <h1 class="heading-class">Javascript class...</h1>
+         <h1 class="heading-class">Javascript class...</h1>
+         <h1 class="heading-class">Javascript class...</h1>
+     </div>
+     <form action="" id="form-1"></form>
+     <form action="" id="form-2"></form>
+     <form action="" id="fieldForm"></form>
+
+     <a href="" name="link">My Link</a>
+
+     <div class="box-1">
+         <ul>
+             <li>1</li>
+             <li>2</li>
+             <li>3</li>
+         </ul>
+     </div>
+     <script type="text/javascript">
+        // ghi vào vị trí tương ứng khi đặt file script, là đoạn text không nằm trong tag nào cả
+        // đọc tới đâu thì thực thi tại đó
+        document.writeln('Hello world');
+     </script>
+
+     <!-- 2. Attribute -->
+     <p id="heading-attr">Heading</p>
+
+      <!-- 3. Text -->
+      <p id="heading-text">Heading Text</p>
+
+      <p id="heading-text-1">
+          
+            <span>Heading Text 1</span>
+            <span style="display:none;">display none</span>
+        
+            <style>
+                .color--red-1{
+                    color: red;
+                }
+            </style>
+
+      </p>
+
+      <p id="heading-text-2">test content</p>
+
+      <!-- 1. Element: thêm element -->
+      <div class="box-element--add">
+      </div>
+
+     <script src="./js/dom.js"></script>
+     <style>
+         .box h1.heading-class:first-child
+         , .color--red{
+             color: red;
+         }
+     </style>
+</body>
+</html>
