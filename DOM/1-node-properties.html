@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Node Properties - Basic JS</title>
+    <style>
+        .red{
+            background-color: red !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- contenteditable: biến element hiện tại thành thẻ input -->
+    <p contenteditable="true" onclick="console.log('click event');">Content Editable</p>
+    <!-- this ở đây đang trả về chính node đó -->
+    <p onclick="console.log(this);">Click Event: Attribute event</p>
+    <p class="click-event">1 Click Event: Assign event</p>
+    <p class="click-event">2 Click Event: Assign event</p>
+    <p class="click-event">3 Click Event: Assign event</p>
+
+    <!-- Sự kiện nổi bọt khi có nhiều sự kiện: node cha và node con -->
+    <!-- VD dưới đây in cả node cha và node con do hành vi nổi bọt -> có thể ngăn chặn đc -->
+    <p onclick="console.log(this);">
+        <span onclick="console.log(this);">Click Span</span> Event
+    </p>
+
+    <div class="box"></div>
+
+    <script src="./js/node-properties.js"></script>
+    <script src="./js/classList.js"></script>
+    <script src="./js/events-dom.js"></script>
+</body>
+</html>

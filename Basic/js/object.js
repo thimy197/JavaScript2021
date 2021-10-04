@@ -94,4 +94,10 @@ User.prototype.getEmail = function(){
 // lúc này author đã có prototype của email, nhưng cũng có thể gọi thông qua Object
 console.log(author.email);
 
+author.email1 = "daothimy@456.com";
+console.log(author);
+
+var authorNew = new User('Mỹ1', 'Đào1', 'avatar nè1');
+User.email1 = "alo@gmail.com"
+console.log(authorNew);
 

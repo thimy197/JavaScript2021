@@ -104,6 +104,7 @@ headingText.innerText = 'new Text Heading';
 headingText.textContent = 'new Text Heading 1';
 // kể cả có tag trong text thì vẫn chỉ là text chứ ko phải tag nha
 headingText.innerText = "<i>text nghieng</i>";
+console.log(headingText.innerText);
 
 // 1. innerText vs textContent
 var headingText1 = document.querySelector('#heading-text-1');

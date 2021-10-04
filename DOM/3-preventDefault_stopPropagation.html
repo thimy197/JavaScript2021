@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PreventDefault & StopPropagation</title>
+    <style>
+        ul{
+            display: none;
+        }
+        /* focus input thì tác động vào ul phía sau */
+        input:focus ~ ul{
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Ex 1:  -->
+    <a name="link" href="http://google.com" target="_blank">Google.com</a><br>
+    <a name="link" href="https://javarevisited.blogspot.com/" target="_blank">ABC.com</a>
+
+    <!-- Ex 2: Focus input, khi click vào 'li' thì thực hiện điền thông tin vào thẻ input -->
+    <input type="text" placeholder="Tìm kiếm"/>
+    <ul>
+        <li>PHP</li>
+        <li>Golang</li>
+        <li>Javascript</li>
+    </ul>
+    <hr>
+
+    <!-- Ex 3: click vào div thì hiển thị 'div' , click vào button thì hiển thị 'click me'-->
+    <!-- 
+        hiện tại thì khi click vào button thì sẽ lấy lun cả sự kiện DIV
+        giải quyết: => StopPropagation
+     -->
+    <div onclick="console.log('DIV');">
+        DIV
+        <button>Click me!</button>
+    </div>
+    
+    <script>
+        /**
+         * DOM Event
+         * 1. PreventDefault: loại bỏ hành vi mặc định của trình duyệt trên 1 thẻ html
+         * 2. StopPropagation: Loại bỏ sự kiện nổi bọt
+         *  Sự kiện nổi bọt là sự kiện cả cha và con đều có event giống nhau
+         * 
+         */
+
+        /* Ex1: */
+         // cùng thẻ a, nhưng link nào có "f8" thì mới chuyển trang
+
+        //  lấy elements có name="", .links lấy tất cả thẻ a
+        var aElement = document.anchors;
+        console.log(aElement);
+        for(var i=0; i<aElement.length;i++){
+            aElement[i].onclick = function(e){
+                // loại bỏ sự kiện trên thẻ tất cả thẻ 'a' có href không bắt đầu bằng chuỗi bên dưới
+                if(!e.target.href.startsWith('http://google.com/')){
+                    // mặc định browser của thẻ a, khi click vào sẽ mở trang theo href
+                    // giờ đã loại bỏ sự kiện mặc định đó nên ko còn thực hiện đc hành động này
+                    e.preventDefault();
+                }
+            }
+        }
+
+        /* Ex2: */
+        // vì khi click sang các ul thì đã có hành động focus ra bên ngoài nên properties display đã đc thực thi
+        // lúc này cần phải chặn sự kiện display ngay khi click chuột xuống những item -> onmousedown
+        var itemElement = document.querySelector('ul');
+        // chặn click trên ul
+        itemElement.onmousedown = function(e){
+            e.preventDefault();
+        }
+        // lấy thông tin click đc
+        itemElement.onclick = function(e){
+            console.log(e.target);
+        }
+        // kết quả: khi click vùng khác sẽ vẫn còn hành vi mặt định, 
+        //      nhưng khi click vào vùng 'ul' thì sẽ ko xảy hành vi -> ko thực thi display
+
+        /* Ex3: ngăn sự nổi bọt của thẻ button, ngăn cho nó loang ra thẻ div */
+        document.querySelector('button').onclick = function(e){
+            e.stopPropagation();
+            console.log("Click me");
+        }
+    </script>
+</body>
+</html>
