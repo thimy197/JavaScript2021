@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promise(async, sync)</title>
+</head>
+<body>
+    <!-- 
+        Promise:
+        - Sync: Đồng bộ
+            viết thèn nào trước thì thực hiện trước, viết sau chạy sao.
+            chạy tuần tự trên xuống
+
+        - Async
+     -->
+     <script>
+         // sleep
+         setTimeout(function(){
+             // run async
+             console.log(1);
+         }, 1000);
+         console.log(2);
+         // result: 2->1
+
+     </script>
+</body>
+</html>

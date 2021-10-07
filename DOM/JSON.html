@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON</title>
+</head>
+<body>
+    <!-- 
+        JSON(JavaScrip Object Notation) là 1 định dạng dữ liệu(chuỗi) 
+        JSON: number, Boolean, null, array, object
+            Note: function() sẽ ko đc thể hiện/hiện thị trong JSON
+
+        - Mã hóa(Encode), Stringify để chuyển đổi JS type->JSON
+        - Giải mã(Decode), Parse để chuyển đổi JSON ->JS type
+        -> String
+    -->
+    <script>
+        // Parse
+        var text = JSON.parse('{"name": "a", "age": 12}');
+        console.log(text);
+        // Stringify
+        console.log(JSON.stringify(text));
+        
+    </script>
+</body>
+</html>
