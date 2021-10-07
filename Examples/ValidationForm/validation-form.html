@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form Đăng Ký</title>
+    <style>
+        body {font-family: Arial, Helvetica, sans-serif;}
+        * {box-sizing: border-box}
+        
+        /* Full-width input fields */
+        input[type=text], input[type=password] {
+          width: 100%;
+          padding: 15px;
+          margin: 5px 0 0 0;
+          display: inline-block;
+          border: none;
+          background: #f1f1f1;
+          border-radius: 5px;
+        }
+        
+        input[type=text]:focus, input[type=password]:focus {
+          background-color: #ddd;
+          outline: none;
+        }
+        
+        hr {
+          border: 1px solid #f1f1f1;
+          margin-bottom: 25px;
+        }
+        
+        /* Set a style for all buttons */
+        button {
+          background-color: #04AA6D;
+          color: white;
+          padding: 14px 20px;
+          margin: 8px 0;
+          border: none;
+          cursor: pointer;
+          max-width: 25%;
+          opacity: 0.9;
+        }
+        
+        button:hover {
+          opacity:1;
+        }
+        
+        /* Extra styles for the cancel button */
+        .cancelbtn {
+          padding: 14px 20px;
+          background-color: #f44336;
+        }
+        
+        /* Float cancel and signup buttons and add an equal width */
+        .cancelbtn, .signupbtn {
+          float: left;
+          width: 50%;
+        }
+        
+        /* Clear floats */
+        .clearfix::after {
+          content: "";
+          clear: both;
+          display: table;
+        }
+        
+        /* Change styles for cancel button and signup button on extra small screens */
+        @media screen and (max-width: 300px) {
+          .cancelbtn, .signupbtn {
+             width: 50%;
+          }
+        }
+
+        .form-message{
+            color: red;
+        }
+        .form-group{
+            margin: 5px 0 22px 0;
+        }
+        input.invalid{
+            border: 1px solid red;
+        }
+        </style>
+  </head>
+  <body>
+    <div class="main">
+      <form action="POST" class="form" id="form-1">
+        <h1>Sign Up</h1>
+        <p>Please fill in this form to create an account.</p>
+        <hr />
+
+        <div class="form-group">
+            <label for="fullname" class="form-lable"><b>Full Name</b></label>
+            <input id="fullName" type="text" placeholder="Enter Full name" name="fullname" required />
+            <span class="form-message"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="email" class="form-lable"><b>Email</b></label>
+            <input id="email" type="text" placeholder="Enter Email" name="email" required />
+            <span class="form-message"></span>
+        </div>
+            
+        <div class="form-group">
+            <label for="psw" class="form-lable"><b>Password</b></label>
+            <input
+            id="password"
+            type="password"
+            placeholder="Enter Password"
+            name="psw"
+            required
+            />
+            <span class="form-message"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="psw-repeat" class="form-lable"><b>Repeat Password</b></label>
+            <input
+            id="password-repeat"
+            type="password"
+            placeholder="Repeat Password"
+            name="psw-repeat"
+            required
+            />
+            <span class="form-message"></span>
+        </div>
+
+        <label>
+          <input
+            id="remember"
+            type="checkbox"
+            checked="checked"
+            name="remember"
+            style="margin-bottom: 15px"
+          />
+          Remember me
+        </label>
+
+        <p>
+          By creating an account you agree to our
+          <a href="#" style="color: dodgerblue">Terms & Privacy</a>.
+        </p>
+
+        <div class="clearfix">
+          <button type="button" class="cancelbtn">Cancel</button>
+          <button type="submit" class="signupbtn">Sign Up</button>
+        </div>
+      </form>
+    </div>
+    <script src="./validation.js"></script>
+    <script>
+        // Exspect của chúng ta để sử dụng trong tương lai
+        Validator({
+            form: '#form-1', //chỉ rõ form cần validator
+            error: '.form-message',
+            rules:[
+                // dưới đây đang gọi 2 function,
+                // và arr đây đang chứa những giá trị trả về của function
+                // chỉ cần trả về tất cả là true -> form success
+                Validator.isRequired('#fullName', "Nhập trường này"), // handle param message
+                Validator.isEmail('#email'),
+                Validator.minLength('#password', 6),
+                Validator.isConfirmed('#password-repeat', function(){
+                  return document.querySelector('#form-1 #password').value;
+                })
+            ]
+        });
+    </script>
+  </body>
+</html>
