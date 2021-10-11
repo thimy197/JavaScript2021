@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OOP in JS</title>
+</head>
+<body>
+    
+    <script>
+
+        // tạo Object bằng constructor function
+        function Course(name, price){
+            this.name = name;
+            this.price = price;
+
+            this.getName = function(){
+                return this.name;
+            }
+
+            const isSuccess = false;
+        }
+        // tạo Object từ class
+        class Course1{
+            constructor(name, price){
+                this.name = name;
+                this.price = price;
+            }
+
+            getName(){
+                return this.name;
+            }
+
+            getPrice(){
+                return this.price;
+            }
+
+        }
+        const phpCourse = new Course("PHP", 1000);
+        console.log(phpCourse);
+
+        // ở dự án lớn thì việc code class sẽ rõ ràng hơn, dễ làm việc cũng như mở rộng
+
+
+        // Trường hợp bình thường ko có Enhanced Object
+        var userNormal = {
+            id:id, 
+            fullname:fullname, 
+            getFullName: function(){return this.fullname;}
+        };
+        console.log(userNormal);
+
+        // Enhanced Object literals
+        // 1. key:value cho Object
+        var id = 1, fullname = 'Dao My';
+        var user = {id, fullname};
+        console.log(user);
+        // 2. method cho Object
+        var user1 = {id, fullname,
+            getFullName(){return this.fullname}
+        };
+        console.log(user1.getFullName());
+        // 3. key cho Object là value của biến
+        var fieldId = "id";
+        var fieldName = "name";
+        var user2 = {[fieldId]:2, [fieldName]:'My My'};
+        console.log(user2);
+
+
+        // Default parameters value
+        function messageLog(msg = "Đây là message default..."){
+            console.log(msg);
+        }
+        messageLog();
+        messageLog("message custom");
+
+
+        // Destructuring: phân rã array/object
+        var myArr = ["JS", "PHP", "JAVA"];
+        const [a, b, c] = myArr;
+        const [e, , g] = myArr;
+        console.log(a, b, c);
+        console.log(e, g);
+        var myObject = {
+            name: "Daomy",
+            position: "staff",
+            image: "image link"
+        }
+        // muốn lấy value nào thì sử dụng đúng key trong Object
+        const {name, position, description="default value for desc"} = myObject;
+        console.log(name, position, description);
+
+
+        // Rest: lấy ra những thèn còn lại
+        const [z, ...restArr] = myArr;
+        console.log(restArr);
+        const {name: nameObj, ...restObj} = myObject; // :nameObj đặt lại tên cho khỏi trùng name đã được khai báo ở trên
+        console.log(restObj); // restObj là object không có name
+        // áp dụng Destructuring trong function, cách dưới tương tự với aray
+        // cách này sử dụng khi cần lấy từng element trong 1 object mà ko cần myObject.name
+        function restElement({name, position, ...otherFields}){
+
+            console.log("rresst Element");
+            console.log(name);
+            console.log(position);
+            console.log(otherFields);
+        }
+        restElement(myObject);
+
+        // Rest parameter
+        function restParam(a, ...params){
+            // a là ptu đầu tiên
+            // params là các ptu còn lại
+            console.log(params);// là array
+            // tất cả parameter
+            console.log(arguments);// là array
+        }
+        restParam(1,2,3,4,5,6,7,8,9);
+
+        
+        // Spread cũng sử dụng (...) nhưu rest
+        // chỉ lấy các giá trị trong 1 biến
+        const arr1 = [1,2,3];
+        const arr2 = [4,5,6];
+        const arrTemp = [...arr1, ...arr2];
+        console.log(arrTemp);
+        const object1 = {name: "daomy"};
+        const object2 = {price: 1000};
+        const objectTemp = {...object1, ...object2};
+        console.log(objectTemp);
+        // spead cho ví dụ rest ở trên
+        restParam(...arrTemp);
+
+
+        // Tagged Template Literals ES6
+        var course='Javascript';
+        var web = "F8";
+        // firstStr đang là giá trị khởi tạo trong hàm hightLight(), reValue = firstStr
+        // lặp values để hightlight cùng từng phần tử trong restStr
+        function hightLight([firstStr, ...restStr], ...values){
+            return values.reduce(
+                (reValue, curValue)=> [...reValue , `<span>${curValue}</span>`, restStr.shift()],[firstStr]
+            );
+        }
+        // cần hightlight các giá trị truyền vào
+        // cách truyền như thế này gọi là "Tagged Template Literal"
+        var html = hightLight`Học lập trình ${course} tại ${web} !`;
+        console.log(html);
+
+        // explain: vì sao cần phải lặp value, và lấy giá trị khởi tạo là firstStr?
+        // vì giá trị cho bắt đầu bằng firstStr, nên mới tách firstStr trong params và đặt default của reduce() là firstStr
+        // nếu ko đặt giá trị default cho reValue=firstStr, thì revalue sẽ lấy element đầu tiên trong values
+        // lặp giá trị value vì giá trị này cần hightlight
+
+    </script>
+</body>
+</html>

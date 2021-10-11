@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arrow function in JS</title>
+</head>
+<body>
+    
+    <script>
+        // Arrow function
+
+       function logger(log){
+           console.log(log);
+       }
+       logger("Message normal function...");
+       
+       const expressionLogger = function(log){
+           console.log(log);
+       }
+       expressionLogger("Message expression function...");
+       
+       const arrowLogger = (log) => {
+           console.log(log);
+       }
+       arrowLogger("Message arrow function...");
+
+       // sau mũi tên ko có block{} thì hiểu là trả về giá trị đó
+       const arrowSumLogger = (a,b) => a+b;
+       console.log(arrowSumLogger(1,2));
+
+       // muốn trả về có {} như 1 object thì nhóm chúng lại trong 1 cặp ()
+       const arrowObjectLogger = (a,b) => ({a:a,b:b});
+       console.log(arrowObjectLogger(1,2));
+
+       // nếu có 1 statement thôi thì ko cần {}
+       const arrowOneLogger = (log) => console.log(log);
+       arrowOneLogger("Message arrow one line function...");
+
+    //    Chú ý trong việc sử dụng arrow:
+    //  - không thể sử dụng arrow function trong 1 function của Object có sd this
+    //  - Không thể sử dụng arraw khi là constructor function
+    // 2 điều trên đang liên quan đến "this" keyword
+
+    // Biến nội suy trong ES6
+    const noisuy = 'nội suy';
+    var varString = `đây là: ${noisuy}`;
+    var breakLineString = `Đây có thể giữ
+    nguyên xuống dòng`;
+    console.log(varString);
+    console.log(breakLineString);
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Let, Const in ES6</title>
+</head>
+<body>
+    
+    <script>
+        // 1. "var" vs "let", "const": scope, hosting
+        // 2. "const" vs "var", "let": assignment
+
+        // SCOPE
+        //  Code block: if else, loop, {}, ...
+        // block
+        {
+            var course = "Js basic!";
+            let course1 = "Js basic!";
+            const course2 = "Js basic!";
+
+        }
+        console.log(course);// right
+        // console.log(course1);// error
+        // console.log(course2);// error
+
+        // HOSTING: đưa lên đầu, đưa những dòng nào có hỗ trợ hosting lên khai báo ở đầu
+        // var có hỗ trợ hosting, let và const thì ko hỗ trợ
+        a=1;
+        var a;// sẽ được khai báo trước a=1
+        console.log(a); // a = 1
+        
+        console.log(aa); // a = undefined
+        // var aa; sẽ đc đưa lên khai báo ở đầu với giá trị default là undefined
+        var aa=1;
+
+        // b=2;
+        let b;
+        console.log(b); // error vì chưa được gán giá trị
+
+        // ASSIGNMENT
+        // const hiểu là hằng số, ==> không thể assignment(phép gán =)
+        // nếu là 1 Object có type là const thì vẫn có thể thay đổi giá trị của các biến bên trong Object đó
+        //      chỉ là ko thể assign "=" cho Oject đós
+        const hso = "abc";
+        hso = "xyz"; // error
+        console.log(hso);
+
+        // keyword: giá trị tham chiếu và tham trị trong JS
+
+        // Code thuần: Sử dụng var
+        // Babel: Const, let
+        //  - Khi định nghĩa hằng số: const
+        //  - Khi cần gán lại giá trị cho biến: let
+
+    </script>
+</body>
+</html>
