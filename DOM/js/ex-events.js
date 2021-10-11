@@ -12,8 +12,10 @@ inputTextNode.oninput = function(){
 var inputCheckNode = document.getElementById("input-check");
 console.log(inputCheckNode.checked);
 
-inputCheckNode.onchange = function(){
-    var checkResult = inputCheckNode.checked;
+inputCheckNode.onchange = function(event){
+    console.log(event);
+    var checkResult = this.checked;
+    event.target.style.backgroundColor = 'red';
     resultNode.firstElementChild.nextElementSibling.innerHTML = `Giá trị checkbox: ${checkResult}`;
 };
 
@@ -21,6 +23,7 @@ var selectNode = document.getElementById("select");
 console.log(selectNode.value);
 
 selectNode.onchange = function(event){
+    
     var checkResult = event.target.value;
     resultNode.lastElementChild.innerHTML = `Giá trị select: ${checkResult}`;
 };
